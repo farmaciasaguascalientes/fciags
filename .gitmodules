@@ -1,0 +1,4 @@
+[submodule "sft/sft_pago_servicios"]
+	path = sft/sft_pago_servicios
+	url = git@github.com:softhink25/sft_pago_servicios.git
+	branch = 15.0e
