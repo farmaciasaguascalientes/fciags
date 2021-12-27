@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- <template id="assets_for_pos_return_order" inherit_id="point_of_sale.assets">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/sale_pos_multi_barcodes_app/static/src/js/pos_barcode_search.js"/>
+        </xpath>
+    </template> -->
+
+	<record id="view_pos_multi_barcode_form_view" model="ir.ui.view">
+        <field name="name">view.pos.multi.barcode.form.view</field>
+        <field name="model">product.multi.barcode</field>
+        <field name="arch" type="xml">
+            <form string="POS barcode">
+                <sheet>
+                    <group>
+                        <field name="multi_barcode"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="product_template_form_view_inherit" model="ir.ui.view">
+        <field name="name">product.template.form.view.inherite</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='categ_id']" position="after">
+                <field name="allow_multi_barcodes" />
+            </xpath>
+            <xpath expr="//page[@name='general_information']" position="after">
+                <page string="Barcodes" name="multi_barcode" attrs="{'invisible': [('allow_multi_barcodes', '!=', True)]}">
+                    <field name="multi_barcode_ids">
+                        <tree editable="bottom">
+                            <field name="multi_barcode" />
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
