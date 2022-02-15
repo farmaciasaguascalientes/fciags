@@ -24,7 +24,7 @@
                         <table cellpadding="12" align="center" style="float: left;">
                            <tr>
                               <th>
-                                 <h3 class="panel-title" style="float: left;">Product Name: </h3>
+                                 <h3 class="panel-title" style="float: left;">Nombre del producto: </h3>
                               </th>
                                <th>
                                  <b style="float: left;">
@@ -35,7 +35,7 @@
                             <tr>
                               <th style="font-weight: bold;">
                                  <h3 class="panel-title"
-                                     style="float: left; font-weight: bold; text-shadow: .5px .5px black;">Regular Price:  </h3>
+                                     style="float: left; font-weight: bold; text-shadow: .5px .5px black;">Precio regular:  </h3>
                               </th>
                                 <th>
                                  <b style="float: left; text-shadow: .2px .2px black;">
@@ -48,7 +48,7 @@
                             <tr>
                               <th>
                                  <h3 class="panel-title"
-                                     style="float: left; font-weight: bold; text-shadow: .5px .5px black;">Special Offer: </h3>
+                                     style="float: left; font-weight: bold; text-shadow: .5px .5px black;">Precio con oferta: </h3>
                               </th>
                                 <th>
                                  <b style="float: left; text-shadow: .2px .2px black;">
@@ -62,7 +62,7 @@
                             <tr>
                               <th>
                                  <h3 class="panel-title"
-                                     style="float: left; font-weight: bold; text-shadow: .5px .5px black;">Unit of Measure: </h3>
+                                     style="float: left; font-weight: bold; text-shadow: .5px .5px black;">Minimo de articulos para aplicar la oferta: </h3>
                               </th>
                                 <th>
                                  <b style="float: left; text-shadow: .2px .2px black;">
@@ -75,7 +75,7 @@
                             </t>
                             <tr>
                               <th>
-                                 <h3 class="panel-title" style="float: left;">Internal Reference:  </h3>
+                                 <h3 class="panel-title" style="float: left;">Referencia interna:  </h3>
                               </th>
                                 <th>
                                  <b style="float: left;">
@@ -85,7 +85,7 @@
                            </tr>
                             <tr>
                               <th>
-                                 <h3 class="panel-title" style="float: left;">Barcode Number:  </h3>
+                                 <h3 class="panel-title" style="float: left;">Codigo de barras:  </h3>
                               </th>
                                 <th>
                                  <b style="float: left;">
@@ -100,7 +100,7 @@
                      <div style="border: 2px solid #000000;border-radius: 1px;float: left; width:100%;">
                         <div class="row mx-auto" style="margin-top:10px;">
                            <br></br>
-                            <h3 class="mx-auto">Please enter the barcode</h3>
+                            <h3 class="mx-auto">Por favor ingrese el codigo de barras</h3>
                         </div>
                          <br></br>
                          <div class="offset-md-2; mx-auto;">
@@ -131,4 +131,3 @@
       </div>
    </t>
 </template>
-
