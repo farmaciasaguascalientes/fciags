@@ -4,7 +4,7 @@
       <div class="o_hr_attendance_kiosk_mode_container o_home_menu_background">
       <span class="o_hr_attendance_kiosk_backdrop"/>
           <div class="o_hr_attendance_clock text-center"/>
-          <div class="o_hr_attendance_kiosk_mode" style="max-width: 50%">
+          <div class="o_hr_attendance_kiosk_mode" style="max-width: 70%">
             <style>
                @media (max-width: 1200px) {
                   .o_hr_attendance_kiosk_mode{
@@ -39,9 +39,8 @@
                               </th>
                                 <th>
                                  <b style="float: left; text-shadow: .2px .2px black;">
-                                    <t t-esc="widget.product_price" t-options='{"widget"}'/>
-                                     <t
-                                             t-esc="widget.currency_id"/>
+                                     <t t-esc="widget.currency_id"/>
+                                     <t t-esc="widget.product_price" t-options='{"widget"}'/>
                                  </b>
                               </th>
                            </tr>
@@ -52,17 +51,16 @@
                               </th>
                                 <th>
                                  <b style="float: left; text-shadow: .2px .2px black;">
-                                    <t t-esc="widget.special_price" t-options='{"widget"}'/>
-                                     <t
-                                             t-esc="widget.currency_id"/>
+                                     <t t-esc="widget.currency_id"/>
+                                     <t t-esc="widget.special_price" t-options='{"widget"}'/>
                                  </b>
                               </th>
                            </tr>
-                            <t t-if="widget.uom_id">
+
                             <tr>
                               <th>
                                  <h3 class="panel-title"
-                                     style="float: left; font-weight: bold; text-shadow: .5px .5px black;">Minimo de articulos para aplicar la oferta: </h3>
+                                     style="float: left; font-weight: bold; text-shadow: .5px .5px black;">Cant. min. para la oferta: </h3>
                               </th>
                                 <th>
                                  <b style="float: left; text-shadow: .2px .2px black;">
@@ -72,7 +70,7 @@
                                  </b>
                               </th>
                            </tr>
-                            </t>
+
                             <tr>
                               <th>
                                  <h3 class="panel-title" style="float: left;">Referencia interna:  </h3>
@@ -85,7 +83,7 @@
                            </tr>
                             <tr>
                               <th>
-                                 <h3 class="panel-title" style="float: left;">Codigo de barras:  </h3>
+                                 <h3 class="panel-title" style="float: left;">Código de barras:  </h3>
                               </th>
                                 <th>
                                  <b style="float: left;">
@@ -100,7 +98,7 @@
                      <div style="border: 2px solid #000000;border-radius: 1px;float: left; width:100%;">
                         <div class="row mx-auto" style="margin-top:10px;">
                            <br></br>
-                            <h3 class="mx-auto">Por favor ingrese el codigo de barras</h3>
+                            <h3 class="mx-auto">Por favor ingrese el código de barras</h3>
                         </div>
                          <br></br>
                          <div class="offset-md-2; mx-auto;">

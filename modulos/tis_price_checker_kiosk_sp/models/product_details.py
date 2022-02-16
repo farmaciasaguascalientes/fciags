@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # This module and its content is copyright of Technaureus Info Solutions Pvt. Ltd.
 # - © Technaureus Info Solutions Pvt. Ltd 2020. All rights reserved.
-from odoo import api, fields, models
+from odoo import api, models
 
 
 class ProductProduct(models.Model):
@@ -20,6 +20,7 @@ class ProductProduct(models.Model):
             uom_id = product_details.uom_id.name
         else:
             uom_id = False
+
         tax_amount = 0
         get_price_tax = 0
         get_price_regular = 0
@@ -48,6 +49,6 @@ class ProductProduct(models.Model):
             get_price_off = round(get_price_off + get_price_tax, 2)
 
         else:
-            get_price = product_details.list_price
+            get_price = product_details.standard_price
         return product_details.id, product_details.name, get_price_regular, product_details.barcode, \
                product_details.default_code, get_price_off, product_details.currency_id.symbol, min_quantity
