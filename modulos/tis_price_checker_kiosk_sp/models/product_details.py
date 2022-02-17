@@ -2,6 +2,9 @@
 # This module and its content is copyright of Technaureus Info Solutions Pvt. Ltd.
 # - © Technaureus Info Solutions Pvt. Ltd 2020. All rights reserved.
 from odoo import api, models
+import logging
+
+_log = logging.getLogger(__name__)
 
 
 class ProductProduct(models.Model):
@@ -21,8 +24,8 @@ class ProductProduct(models.Model):
         else:
             uom_id = False
 
-        tax_amount = 0
-        get_price_tax = 0
+        tax_regular = 0
+        tax_off = 0
         get_price_regular = 0
         get_price_off = 0
         min_quantity = 0
@@ -37,18 +40,18 @@ class ProductProduct(models.Model):
                 for tax in product_details.taxes_id:
                     if not tax.price_include:
                         if tax.amount_type == 'fixed':
-                            tax_amount += tax.amount
-                            get_price_tax += tax.amount
+                            tax_regular += tax.amount
+                            tax_off += tax.amount
                         if tax.amount_type == 'percent':
-                            tax_amount += (product_details.lst_price / 100) * tax.amount
-                            get_price_tax += (get_price / 100) * tax.amount
+                            tax_regular += (get_price_regular / 100) * tax.amount
+                            tax_off += (get_price_off / 100) * tax.amount
                     else:
-                        tax_amount = tax.amount
-                        get_price_tax = tax_amount
-            get_price_regular = round(get_price_regular + tax_amount, 2)
-            get_price_off = round(get_price_off + get_price_tax, 2)
+                        tax_regular = tax.amount / 100 * get_price_regular
+                        tax_off = tax.amount / 100 * get_price_off
+            get_price_regular = round(get_price_regular + tax_regular, 2)
+            get_price_off = round(get_price_off + tax_off, 2)
 
         else:
-            get_price = product_details.standard_price
+            get_price_regular = product_details.standard_price
         return product_details.id, product_details.name, get_price_regular, product_details.barcode, \
                product_details.default_code, get_price_off, product_details.currency_id.symbol, min_quantity
