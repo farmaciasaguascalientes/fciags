@@ -38,16 +38,16 @@ class ProductProduct(models.Model):
             get_price_off = get_price_off[0]
             if product_details.taxes_id:
                 for tax in product_details.taxes_id:
-                    if not tax.price_include:
-                        if tax.amount_type == 'fixed':
-                            tax_regular += tax.amount
-                            tax_off += tax.amount
-                        if tax.amount_type == 'percent':
-                            tax_regular += (get_price_regular / 100) * tax.amount
-                            tax_off += (get_price_off / 100) * tax.amount
-                    else:
-                        tax_regular = tax.amount / 100 * get_price_regular
-                        tax_off = tax.amount / 100 * get_price_off
+                    # if not tax.price_include:
+                    if tax.amount_type == 'fixed':
+                        tax_regular += tax.amount
+                        tax_off += tax.amount
+                    if tax.amount_type == 'percent':
+                        tax_regular += (get_price_regular / 100) * tax.amount
+                        tax_off += (get_price_off / 100) * tax.amount
+                    # else:
+                    #     tax_regular = tax.amount / 100 * get_price_regular
+                    #     tax_off = tax.amount / 100 * get_price_off
             get_price_regular = round(get_price_regular + tax_regular, 2)
             get_price_off = round(get_price_off + tax_off, 2)
 
