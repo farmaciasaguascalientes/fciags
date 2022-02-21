@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# Agustín: Esto no debería ser posible porque es un gran riesgo de seguridad
 
 import re
 from odoo import api, fields, models, _
