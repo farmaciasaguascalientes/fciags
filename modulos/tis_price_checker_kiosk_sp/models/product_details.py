@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# This module and its content is copyright of Technaureus Info Solutions Pvt. Ltd.
-# - © Technaureus Info Solutions Pvt. Ltd 2020. All rights reserved.
+# Modificado por Pascual Chavez
 from odoo import api, models
 import logging
 
@@ -30,26 +29,48 @@ class ProductProduct(models.Model):
         get_price_off = 0
         min_quantity = 0
         if product_details.id and price_list:
+            price_list_details = self.env['product.pricelist'].search([('id', '=', price_list)])
+            get_price_regular = self.env['product.pricelist'].search([('id', '=', price_list)]).get_product_price_rule(
+                product_details, 1, False)
             get_price_off = self.env['product.pricelist'].search([('id', '=', price_list)]).get_product_price_rule(
                 product_details, 9999999, False)
-            get_price_regular = self.env['product.pricelist'].search([('id', '=', price_list)]).get_product_price(
-                product_details, 1, False)
             min_quantity = self.env['product.pricelist.item'].browse(get_price_off[1]).min_quantity
+            price_regular_rule_id = get_price_regular[1]
+            price_off_rule_id = get_price_off[1]
+            get_price_regular = get_price_regular[0]
             get_price_off = get_price_off[0]
-            if product_details.taxes_id:
-                for tax in product_details.taxes_id:
-                    # if not tax.price_include:
-                    if tax.amount_type == 'fixed':
-                        tax_regular += tax.amount
-                        tax_off += tax.amount
-                    if tax.amount_type == 'percent':
-                        tax_regular += (get_price_regular / 100) * tax.amount
-                        tax_off += (get_price_off / 100) * tax.amount
-                    # else:
-                    #     tax_regular = tax.amount / 100 * get_price_regular
-                    #     tax_off = tax.amount / 100 * get_price_off
-            get_price_regular = round(get_price_regular + tax_regular, 2)
-            get_price_off = round(get_price_off + tax_off, 2)
+            price_regular_compute_price = price_list_details.item_ids.search(
+                [('id', '=', price_regular_rule_id)]).compute_price
+            price_off_compute_price = price_list_details.item_ids.search([('id', '=', price_off_rule_id)]).compute_price
+            if price_regular_compute_price == 'formula':
+                if product_details.taxes_id:
+                    for tax in product_details.taxes_id:
+                        # if not tax.price_include:
+                        if tax.amount_type == 'fixed':
+                            tax_regular += tax.amount
+                        if tax.amount_type == 'percent':
+                            tax_regular += (get_price_regular / 100) * tax.amount
+                        # else:
+                        #     tax_regular = tax.amount / 100 * get_price_regular
+                get_price_regular = round(get_price_regular + tax_regular, 2)
+            elif price_off_compute_price == 'fixed':
+                pass
+
+            if price_off_compute_price == 'formula':
+                if product_details.taxes_id:
+                    for tax in product_details.taxes_id:
+                        # if not tax.price_include:
+                        if tax.amount_type == 'fixed':
+                            tax_off += tax.amount
+                        if tax.amount_type == 'percent':
+                            tax_off += (get_price_off / 100) * tax.amount
+                        # else:
+                        #     tax_off = tax.amount / 100 * get_price_off
+                get_price_off = round(get_price_off + tax_off, 2)
+            elif price_off_compute_price == 'fixed':
+                pass
+
+
 
         else:
             get_price_regular = product_details.standard_price
