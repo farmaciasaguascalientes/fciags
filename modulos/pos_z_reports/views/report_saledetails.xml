@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+<template id="report_saledetails22">
+    <t t-call="web.html_container">
+        <t t-call="web.internal_layout">
+            <div class="page">
+                <div class="text-center">
+                    <div>
+                        <h3>POS Z REPORT</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">Report Date:</div><div class="col-6 text-right"><span t-esc="current_date"/></div>
+                </div>
+                <div class="row">
+                    <div class="col-6">Report Time:</div><div class="col-6 text-right"><span t-esc="current_time"/></div>
+                </div>
+                <div class="row">
+                    <div class="col-6">Responsible:</div><div class="col-6 text-right"><span t-esc="user_name"/></div>
+                </div>
+                <div class="row">
+                    <div class="col-6">Batch Status:</div><div class="col-6 text-right"><span t-esc="state"/></div>
+                </div>
+                <div class="row">
+                    <div class="col-6">Opening Date:</div><div class="col-6 text-right"><span t-esc="start_at"/></div>
+                </div>
+                <div class="row">
+                    <div class="col-6">Closing Date:</div><div class="col-6 text-right"><span t-esc="stop_at"/></div>
+                </div>
+                <div class="row">
+                    <div class="col-6">Number of Orders:</div><div class="col-6 text-right"><span t-esc="total_orders"/></div>
+                </div>
+                <div class="row mb16 mt16">
+                    <div class="col-6"><b>Total Transaction by Cashier</b></div>
+                </div>
+                <t t-raw="seller_list"/>
+                <div class="row mb16 mt16">
+                    <div class="col-6"><b>Summary by Payment Methods</b></div>
+                </div>
+                <div class="row" t-foreach="statement" t-as="i">
+                    <div class="col-6" t-esc="i['journal_id']"></div>
+                    <div class="col-6 text-right"><div t-esc="i['total_entry_encoding']"/></div>
+                </div>
+                <div class="row mb16 mt16">
+                    <div class="col-6"><h4>Total Payments Received:</h4></div>
+                    <div class="col-6 text-right"><h4><span t-esc="statements_total"/></h4></div>
+                </div>
+                <div class="row">
+                    <div class="col-6">Untaxed sales:</div>
+                    <div class="col-6 text-right"><span t-esc="untaxed_sales"/></div>
+                </div>
+                <div class="row">
+                    <div class="col-6">Total tax:</div>
+                    <div class="col-6 text-right"><span t-esc="tax_base_total"/></div>
+                </div>
+                <div class="row">
+                    <div class="col-6">Discount:</div>
+                    <div class="col-6 text-right"><span t-esc="discount"/></div>
+                </div>
+                <div class="row mb16 mt16">
+                    <div class="col-6"><b>TAX</b></div>
+                </div>
+                <t t-if="summary_by_tax">
+                    <div class="row">
+                        <div class="col-6">Name</div>
+                        <div class="col-6 text-right">Total</div>
+                    </div>
+                    <div class="row" t-foreach="summary_by_tax" t-as="i">
+                        <div class="col-6"><t t-esc="i['name']"/></div>
+                        <div class="col-6 text-right"><t t-esc="i['total']"/></div>
+                    </div>
+                </t>
+                <div class="row mb16 mt16">
+                    <div class="col-6"><b>Cash Control</b></div>
+                </div>
+                <div class="row">
+                    <div class="col-6">Opening balance:</div>
+                    <div class="col-6 text-right"><span t-esc="cash_register_balance_start"/></div>
+                </div>
+                <div class="row">
+                    <div class="col-6">Transactions:</div>
+                    <div class="col-6 text-right"><span t-esc="cash_register_total_entry_encoding"/></div>
+                </div>
+                <div class="row">
+                    <div class="col-6">Theoretical Closing Balance:</div>
+                    <div class="col-6 text-right"><span t-esc="cash_register_balance_end"/></div>
+                </div>
+                <div class="row">
+                    <div class="col-6">Real Closing Balance:</div>
+                    <div class="col-6 text-right"><span t-esc="cash_register_balance_end_real"/></div>
+                </div>
+                <div class="row">
+                    <div class="col-6">Difference:</div>
+                    <div class="col-6 text-right"><span t-esc="cash_register_difference"/></div>
+                </div>
+                <div class="row mb16 mt16">
+                    <div class="col-6"><b>Hourly Sale</b></div>
+                </div>
+                <br/>
+                <t t-if="pos_order_list">
+                    <table  class="table table-condensed">
+     <!--                    <thead>
+                            <tr>
+                                <th><b>Time</b></th>
+                                <th><b>Total</b></th>
+                                <th><b>Total Amount</b></th>
+                            </tr>
+                        </thead> -->
+                        <tbody>
+                            <tr t-foreach="pos_order_list" t-as="i">
+                                <td><t t-esc="i['time']"/></td>
+                                <td><t t-esc="i['orders']"/></td>
+                                <td><t t-esc="i['total']"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </t>
+            </div>
+        </t>
+    </t>
+</template>
+<template id="report_saledetails">
+                <h2>POS Z REPORT</h2><table>
+                    <tr>
+                        <td>Report Date:</td><td><span t-esc="current_date"/></td>
+                    </tr>
+                    <tr>
+                        <td>Report Time:</td><td><span t-esc="current_time"/></td>
+                    </tr>
+                    <tr>
+                        <td>Responsible:</td><td><span t-esc="user_name"/></td>
+                    </tr>
+                    <tr>
+                        <td>Batch Status:</td><td><span t-esc="state"/></td>
+                    </tr>
+                    <tr>
+                        <td>Opening Date:</td><td><span t-esc="start_at"/></td>
+                    </tr>
+                    <tr>
+                        <td>Closing Date:</td><td><span t-esc="stop_at"/></td>
+                    </tr>
+                    <tr>
+                        <td>Number of Orders:</td><td><span t-esc="total_orders"/></td>
+                    </tr>
+                    <tr>
+                        <td><b>Total Transaction by Cashier</b></td>
+                    </tr>
+                    <t t-raw="seller_list"/>
+                    <tr>
+                        <td><b>Summary by Payment Methods</b></td>
+                    </tr>
+                    <tr t-foreach="statement" t-as="i">
+                        <td t-esc="i['journal_id']"></td>
+                        <td ><div t-esc="i['total_entry_encoding']"/></td>
+                    </tr>
+                    <tr>
+                        <td><h4>Total Payments Received:</h4></td>
+                        <td><h4><span t-esc="statements_total"/></h4></td>
+                    </tr>
+                    <tr>
+                        <td>Untaxed sales:</td>
+                        <td><span t-esc="untaxed_sales"/></td>
+                    </tr>
+                    <tr>
+                        <td>Total tax:</td>
+                        <td><span t-esc="tax_base_total"/></td>
+                    </tr>
+                    <tr>
+                        <td>Discount:</td>
+                        <td><span t-esc="discount"/></td>
+                    </tr>
+                    <tr>
+                        <td><b>TAX</b></td>
+                    </tr>
+                    <t t-if="summary_by_tax">
+                        <tr>
+                            <td>Name</td>
+                            <td>Total</td>
+                        </tr>
+                        <tr t-foreach="summary_by_tax" t-as="i">
+                            <td><t t-esc="i['name']"/></td>
+                            <td><t t-esc="i['total']"/></td>
+                        </tr>
+                    </t>
+                    <tr>
+                        <td><b>Cash Control</b></td>
+                    </tr>
+                    <tr>
+                        <td>Opening balance:</td>
+                        <td><span t-esc="cash_register_balance_start"/></td>
+                    </tr>
+                    <tr>
+                        <td>Transactions:</td>
+                        <td><span t-esc="cash_register_total_entry_encoding"/></td>
+                    </tr>
+                    <tr>
+                        <td>Theoretical Closing Balance:</td>
+                        <td><span t-esc="cash_register_balance_end"/></td>
+                    </tr>
+                    <tr>
+                        <td>Real Closing Balance:</td>
+                        <td><span t-esc="cash_register_balance_end_real"/></td>
+                    </tr>
+                    <tr>
+                        <td>Difference:</td>
+                        <td><span t-esc="cash_register_difference"/></td>
+                    </tr>
+                    <tr>
+                        <td><b>Hourly Sale</b></td>
+                    </tr>
+                </table>
+                <t t-if="pos_order_list">
+                    <table>
+                        <tr>
+                            <th><b>Time</b></th>
+                            <th><b>Total</b></th>
+                            <th><b>Total Amount</b></th>
+                        </tr>
+                        <tr t-foreach="pos_order_list" t-as="i">
+                            <td><t t-esc="i['time']"/></td>
+                            <td><t t-esc="i['orders']"/></td>
+                            <td><t t-esc="i['total']"/></td>
+                        </tr>
+                    </table>
+                </t>
+            
+        
+</template>
+</data>
+</odoo>

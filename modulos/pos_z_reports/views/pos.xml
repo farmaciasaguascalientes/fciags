@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="email_template_advance_report" model="mail.template">
+            <field name="name">POS Z Report</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="email_from">${(user.email)|safe}</field>
+            <field name="email_to">${(object.email)}</field>
+            <field name="subject">Report</field>
+                <field name="body_html">
+                <![CDATA[
+                    <p>Dear ${object.name},</p>
+                
+            ]]>
+            </field>
+        </record>
+        <record id="pos_config_view_form_pos_sale" model="ir.ui.view"> 
+            <field name="name">pos.config.form.pos.sale</field>
+            <field name="model">pos.config</field>
+            <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+            <field name="arch" type="xml">
+                <div id="category_reference" position="after">
+                    <div class="col-xs-12 col-md-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name='allow_send_z_report' />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="allow_send_z_report"/>
+                            <div class="content-group" attrs="{'invisible' : [('allow_send_z_report', '=', False)]}">
+                                <div class="row mt16">
+                                    <label  for="z_report_email" class="col-md-3 o_light_label"/>
+                                    <field name="z_report_email" widget="many2many_tags"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </field>
+        </record>
+        <record id="sale_details_report" model="ir.actions.report">
+            <field name="name">POS Sales Details</field>
+            <field name="model">report.pos_z_reports.details</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">pos_z_reports.report_saledetails</field>
+        </record>
+        <record id="sale_details_report22" model="ir.actions.report">
+            <field name="name">POS Sales Details</field>
+            <field name="model">report.pos_z_reports.details</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">pos_z_reports.report_saledetails22</field>
+        </record>
+        <record model="ir.ui.view" id="view_pos_session_form">
+            <field name="name">pos.session.form.view</field>
+            <field name="model">pos.session</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_session_form" />
+            <field name="arch" type="xml">
+                <header position='inside'>
+                    <button name="generate_detail_z_order_report" type="object" string="Print Z Report" 
+                            class="oe_highlight"/>
+                </header>
+            </field>
+        </record>
+    </data>
+</odoo>
