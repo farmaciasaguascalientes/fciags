@@ -13,6 +13,7 @@ from odoo.tools import float_compare, float_round
 class PosSession(models.Model):
     _inherit = 'pos.session'
 
+    @api.model
     def action_pos_session_close(self):
         res = super(PosSession, self).action_pos_session_close()
         ir_data = self.env['ir.model.data']
