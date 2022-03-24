@@ -13,9 +13,9 @@ from odoo.tools import float_compare, float_round
 class PosSession(models.Model):
     _inherit = 'pos.session'
 
-    @api.model
-    def action_pos_session_close(self):
-        res = super(PosSession, self).action_pos_session_close()
+    
+    def action_pos_session_close(self, balancing_account=False, amount_to_balance=0, bank_payment_method_diffs=None):
+        res = super(PosSession, self).action_pos_session_close(self, balancing_account=False, amount_to_balance=0, bank_payment_method_diffs=None)
         ir_data = self.env['ir.model.data']
         advance_template = ir_data.get_object('pos_z_reports', 'email_template_advance_report')
         for result in self:
