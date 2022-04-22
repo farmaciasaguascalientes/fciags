@@ -9,6 +9,11 @@
     ],
     'depends': [
         'purchase',
+        'sale',
+        'stock',
+        'base_address_extended',
+        'l10n_mx_edi',
+        'delivery',
     ],
     'data': [
         'reports/ticket_cabecera_pie_pagina.xml',
