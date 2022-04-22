@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_ticket_purchase_solicitud_cotizacion" model="ir.actions.report">
+        <field name="name">Ticket Solicitud de cotización</field>
+        <field name="model">purchase.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">zublime_custom_reports.ticket_purchase_solicitud_cotizacion</field>
+        <field name="report_file">zublime_custom_reports.ticket_purchase_solicitud_cotizacion</field>
+        <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="zublime_custom_reports.paperformat_ticket_purchase"/>
+    </record>
+
+    <record id="action_report_ticket_purchase_pedido_compra" model="ir.actions.report">
+        <field name="name">Ticket Pedido de compra</field>
+        <field name="model">purchase.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">zublime_custom_reports.ticket_purchase_pedido_compra</field>
+        <field name="report_file">zublime_custom_reports.ticket_purchase_pedido_compra</field>
+        <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="zublime_custom_reports.paperformat_ticket_purchase"/>
+    </record>
+
+    <record id="action_report_ticket_sale_cotizacion" model="ir.actions.report">
+        <field name="name">Ticket Cotización/Orden</field>
+        <field name="model">sale.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">zublime_custom_reports.ticket_sale_cotizacion</field>
+        <field name="report_file">zublime_custom_reports.ticket_sale_cotizacion</field>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="zublime_custom_reports.paperformat_ticket_purchase"/>
+    </record>
+
+    <record id="action_report_ticket_sale_order" model="ir.actions.report">
+        <field name="name">Ticket Orden de venta</field>
+        <field name="model">sale.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">zublime_custom_reports.ticket_sale_order</field>
+        <field name="report_file">zublime_custom_reports.ticket_sale_order</field>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="zublime_custom_reports.paperformat_ticket_purchase"/>
+    </record>
+
+    <record id="action_report_ticket_picking_operacion_recoleccion" model="ir.actions.report">
+        <field name="name">Ticket Operación de recolección</field>
+        <field name="model">stock.picking</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">zublime_custom_reports.ticket_operacion_recoleccion</field>
+        <field name="report_file">zublime_custom_reports.ticket_operacion_recoleccion</field>
+        <field name="binding_model_id" ref="stock.model_stock_picking"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="zublime_custom_reports.paperformat_ticket_purchase"/>
+    </record>
+</odoo>
