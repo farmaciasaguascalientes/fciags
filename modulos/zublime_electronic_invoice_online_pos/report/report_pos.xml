@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <template id="report_pos_a4_invoice_online" inherit_id="zublime_pos_ticket.report_posorder_a4_document">
+        <xpath expr="//div[@class='page']" position="after">
+            <t t-call="zublime_electronic_invoice_online_pos.reporte_leyendas_pos"/>
+        </xpath>
+    </template>
+</odoo>

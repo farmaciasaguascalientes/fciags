@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_move_form_inherit_zublime" model="ir.ui.view">
+            <field name="name">account.move.form.inherit</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account_edi.view_move_form_inherit" />
+            <field name="arch" type="xml">
+                <!-- Remueve mensaje sobre timbrado en el formview-->
+                <xpath expr="//div[hasclass('alert', 'alert-info')]" position="replace"/>
+
+                <!-- agrega botón para timbrar en la botonera -->
+                <xpath expr="//header/button[last()]" position="after">
+                    <field name="edi_web_services_to_process" invisible="1"/>
+                    <field name="firmado" invisible="1"/>
+                    <button id="timbrar_factura" string="Timbrar" 
+                        confirm="Desea timbrar esta factura?"
+                        groups="zublime_edi.group_display_edi_info"
+                        attrs="{'invisible': ['|',('firmado','=',True),'|',('edi_state', 'in', ['to_cancel']), '|', ('state', '=', 'draft'),
+                        ('move_type','=','in_invoice')]}"
+                        type="object"
+                        name="do_firma_docs"
+                    />
+                </xpath>
+
+                <!-- el estado del doc -->
+                <xpath expr="//field[@name='edi_state']" position="attributes">
+                     <attribute name="groups">zublime_edi.group_display_edi_info</attribute>
+                </xpath>
+                
+                <!-- el tab/page de info sobre edi -->
+                <xpath expr="//page[@id='edi_documents']" position="attributes">
+                    <attribute name="groups">zublime_edi.group_display_edi_info</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+
+        <!-- se reemplaza el bloque para condicionarlo con zublime_edi.group_display_edi_info -->
+        <record id="l10n_mx_edi.view_l10n_mx_edi_invoice_form_inherit" model="ir.ui.view">
+            <field name="name">l10n_mx_edi.invoice.form.inherit</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/group//group[last()]" position="inside">            
+                    <!-- Invisible fields -->
+                    <field name="l10n_mx_edi_cfdi_request" invisible="1"/>
+
+                    <!-- SAT -->
+                    <label for="l10n_mx_edi_sat_status"
+                           attrs="{'invisible': ['|', ('state', 'not in', ('posted', 'cancel')), ('l10n_mx_edi_cfdi_request', '=', False)]}"
+                           groups="zublime_edi.group_display_edi_info"/>
+                    <div class="o_row"
+                         attrs="{'invisible': ['|', ('state', 'not in', ('posted', 'cancel')), ('l10n_mx_edi_cfdi_request', '=', False)]}"
+                         groups="zublime_edi.group_display_edi_info">
+                        <field name="l10n_mx_edi_sat_status"/>
+                        <button name="l10n_mx_edi_update_sat_status" type="object"
+                                string="Retry" class="oe_link"
+                                groups="account.group_account_invoice"
+                                attrs="{'invisible': ['|', ('state', 'not in', ('posted', 'cancel')), ('l10n_mx_edi_cfdi_request', '=', False)]}"/>
+                    </div>
+
+                    <!-- CFDI -->
+                    <field name="l10n_mx_edi_cfdi_uuid"
+                           attrs="{'invisible': ['|', ('state', 'not in', ('posted', 'cancel')), ('l10n_mx_edi_cfdi_request', '=', False)]}"
+                           groups="zublime_edi.group_display_edi_info"/>
+                    <field name="l10n_mx_edi_origin"
+                           attrs="{'invisible': [('l10n_mx_edi_cfdi_request', '=', False)]}"
+                           groups="zublime_edi.group_display_edi_info"/>
+                </xpath>
+
+                <!-- bloque sin cambios -->
+                <xpath expr="//field[@name='ref']" position="after">
+                    <field name="l10n_mx_edi_payment_method_id"
+                           attrs="{'readonly': [('state', '!=', 'draft')], 'invisible': [('l10n_mx_edi_cfdi_request', '=', False)]}"/>
+                    <field name="l10n_mx_edi_payment_policy" 
+                        attrs="{'invisible': [('l10n_mx_edi_cfdi_request', '=', False)]}"/>
+                    <field name="l10n_mx_edi_usage"
+                           attrs="{'readonly':[('state', '!=', 'draft')], 'invisible': [('l10n_mx_edi_cfdi_request', '=', False)]}"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <!-- list view de facturas -->
+        <record id="view_invoice_tree" model="ir.ui.view">
+            <field name="name">account.invoice.tree</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_invoice_tree"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//field[@name='state']" position="after">  
+                    <field name="firmado" optional="show" groups="zublime_edi.group_display_edi_info" />
+                 </xpath>
+            </field>
+        </record>
+
+        <record id="view_account_invoice_filter" model="ir.ui.view">
+            <field name="name">account.invoice.select</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search/filter[@name='cancel']" position="after">
+                    <filter name="firmado" string="Firmado" domain="[('firmado', '=', True)]" groups="zublime_edi.group_display_edi_info" />
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
