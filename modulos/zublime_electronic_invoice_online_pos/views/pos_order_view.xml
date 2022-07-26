@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="view_electronic_invoice_online_pos_pos_form" model="ir.ui.view">
+        <field name="name">view.electronic.invoice.online.pos.pos.form</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="arch" type="xml">
+            <page name="extra" position="inside">
+                <field name="active_invoice_online" invisible="1"/>
+                <group attrs="{'invisible': [('active_invoice_online', '=', False)]}">
+                    <group name="invoice_online" string="Facturación en línea">
+                        <field name="permitir_facturar_online" readonly="1"/>
+                        <field name="url_facturacion" force_save="1" readonly="1"/>
+                        <field name="token_facturacion" force_save="1" readonly="1"/>
+                        <field name="url_corta" force_save="1" readonly="1"/>
+                        <div class="o_td_label">
+                            <table class="o_td_label">
+                                <thead>
+                                    <tr>
+                                        <th>Códgio QR:</th>
+                                    </tr>
+                                    <tr t-if="qrcode_facturacion">
+                                        <th>
+                                            <field nolabel="1" name="qrcode_facturacion" force_save="1" readonly="1" widget="image"/>
+                                        </th>
+                                    </tr>
+                                    <tr t-if="qrcode_url">
+                                        <th>
+                                            <field nolabel="1" name="qrcode_url" force_save="1" readonly="1" widget="url"/>
+                                        </th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </group>
+                </group>
+            </page>
+        </field>
+    </record>
+
+    <record id="permitir_facturar_online_view_pos_pos_form" model="ir.ui.view">
+        <field name="name">permitir.facturar.online.view.pos.pos.form</field>
+        <field name="inherit_id" ref="zublime_electronic_invoice_online_pos.view_electronic_invoice_online_pos_pos_form"/>
+        <field name="model">pos.order</field>
+        <field name="groups_id" eval="[(4, ref('zublime_electronic_invoice_online.group_activar_desactivar_invoice_online_manual'))]"/>
+        <field name="arch" type="xml">
+            <field name="permitir_facturar_online" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>

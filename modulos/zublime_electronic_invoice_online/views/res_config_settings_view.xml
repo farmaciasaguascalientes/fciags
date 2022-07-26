@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="electronic_invoice_online_res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">electronic.invoice.online.res.config.settings.view.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@data-key='account']" position="inside">
+                <h2>Facturación En Línea</h2>
+                <div class="row mt16 o_settings_container" id="zublime_invoice_online">
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="active_invoice_online"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="active_invoice_online"/>
+                            <div class="text-muted">
+                                Al activar esta característica se integrará en los documentos de venta y POS(si esta instalado).
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="endpoint_invoice_online"/>
+                            <field name="endpoint_invoice_online"/>
+                            <div class="text-muted">
+                                Endpoint (URL) de la API Rest “Facturanet”
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="token_invoice_online"/>
+                            <field name="token_invoice_online"/>
+                            <div class="text-muted">
+                                Se debe de especificar el token de autenticación de la API Rest, este valor es proporcionado por Facturanet.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="politics_invoice_online"/>
+                            <field name="politics_invoice_online"/>
+                        </div>
+                    </div>
+                </div>            
+            </xpath>
+        </field>
+    </record>
+
+    <record id="nota_sale_res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">nota.sale.res.config.settings.view.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@data-key='sale_management']" position="inside">
+                <h2>Incluir nota custom en documentos impresos de Ventas</h2>
+                <div class="row mt16 o_settings_container" id="zublime_sale_nota">
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="incluir_nota_sale_document"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="incluir_nota_sale_document"/>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div style="width: 100%;" class="o_setting_right_pane">
+                            <label for="nota_sale"/>
+                            <field style="width: 100%;" name="nota_sale" widget="html"/>
+                        </div>
+                    </div>
+                </div>
+                <h2>Incluir información destacada en documentos impresos de Ventas</h2>
+                <div class="row mt16 o_settings_container" id="zublime_sale_info_destacada">
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="incluir_info_destacada_sale_document"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="incluir_info_destacada_sale_document"/>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div style="width: 100%;" class="o_setting_right_pane">
+                            <label for="info_destacada_sale"/>
+                            <field style="width: 100%;" name="info_destacada_sale" widget="html"/>
+                        </div>
+                    </div>
+                </div> 
+            </xpath>
+        </field>
+    </record>
+</odoo>

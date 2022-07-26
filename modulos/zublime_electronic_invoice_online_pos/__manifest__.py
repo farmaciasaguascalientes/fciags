@@ -1,0 +1,30 @@
+{
+    'name': 'Facturación electrónica en linea (POS)',
+    'version': '15.0.1',
+    'category': 'Pos',
+    'license': 'Other proprietary',
+    'author': 'Zublime',
+    'maintainer': 'Kelvis Pernia <kelvis.p@zublime.com.mx>',
+    'contributors': [
+        'Kelvis Pernia <kelvis.p@zublime.com.mx>',
+    ],
+    "website": "https://zublime.mx",
+    'summary': 'Zublime Electronic Invoice Online POS',
+    'category': 'Electronic Invoice Online POS',
+    'depends': [
+        'base',
+        'account',
+        'base_setup',
+        'point_of_sale',
+        'zublime_electronic_invoice_online',
+    ],
+    'data': [
+        'views/res_config_settings_view.xml',
+        'views/pos_order_view.xml',
+        'report/reporte_leyendas_pos.xml',
+        #'report/report_pos.xml',
+    ],
+    'installable': True,
+    'auto_install': False,
+    'application': False,
+}

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="wizard_message_stock_barcode_form" model="ir.ui.view">
+            <field name="name">message stock barcode</field>
+			<field name="model">message.stock.barcode</field>
+			<field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <!--h3>Enter the barcode of a product</h3>
+                    <group>
+                        <field name="barcode"/>
+                    </group>
+                    <button string="Search" class="btn-secondary" type="object" name="search_product"/-->
+                    <separator/>
+                    <field name="stock_quant_ids" readonly="1">
+                        <tree create="0" delete="0" edit="0" >
+                            <field name="location_id" optional="show"/>
+                            <field name="product_id" optional="show"/>
+                            <field name="lot_id" optional="show"/>
+                            <field name="available_quantity" optional="show"/>
+                            <field name="product_uom_id" optional="show"/>
+                            <field name="inventory_date" optional="show"/>
+                            <field name="user_id" optional="show"/>
+                            <field name='company_id' optional="show"/>
+                        </tree>
+                    </field>
+                    <separator/>
+                    <h3>Enter Quantity</h3>
+                    <group>
+                        <field name="quantity" optional="show"/>
+                    </group>
+                    <footer>
+                        <button name="replace" string="Replace" type="object" class="btn-secondary"/>
+                        <button name="add" string="Add" type="object" class="btn-secondary"/>
+                        <button name="close_clear" string="cancel" type="object"  class="btn-primary"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+		<record id="action_message_stock_barcode" model="ir.actions.act_window">
+            <field name="name">message stock barcode</field>
+            <field name="res_model">message.stock.barcode</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+	</data>
+</odoo>
