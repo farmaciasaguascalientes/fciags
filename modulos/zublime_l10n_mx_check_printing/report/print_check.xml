@@ -2,44 +2,130 @@
 <odoo>
 <data>
 
-<template id="ckus_check">
-    <div class="ckus_check">
-        <t t-if="page['state'] == 'cancelled'">
-            <div class="o-watermark">VOID</div>
-        </t>
-        <div class="sequence_number" t-if="page['sequence_number'] and page['manual_sequencing']" t-esc="page['sequence_number']" />
-        <div class="ckus_date" t-esc="page['date_month']"/>
-        <div class="ckus_payee_name" t-esc="page['partner_name']"/>
-        <div class="ckus_amount">
-            <t t-esc="page['amount'].replace(o.currency_id.symbol, '')"/>
-        </div>
-        <div class="ckus_amount_in_word" t-esc="page['amount_in_word']"/>
-        <div class="ckus_payee_addr" t-esc="page['description_check']"/>
-        <!--div class="ckus_memo" t-esc="page['memo']"/-->
-    </div>
+<template id="ckus_check_mx">
+    <table  style="width: 100%; border: hidden;">
+        <tr>
+            <br/>
+            <br/>
+            <td style="width: 40%; border: hidden; "/>
+            <td style="width: 20%; border: hidden; ">
+                <div t-esc="page['date_month']"/><br/>
+            </td>
+            <td style="width: 40%; border: hidden; "/>
+        </tr>
+        <tr>
+            <td>
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="width: 60%; border: hidden; text-align: left;">
+                &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<t t-esc="page['partner_name']"/>
+            </td>
+            <td style="width: 40%; border:hidden; text-align:center;">
+                 <t t-esc="page['amount'].replace(o.currency_id.symbol, '')"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td  colspan="3" style="width: 100%; border: hidden; text-align: left;">
+                 &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<t t-esc="page['amount_in_word'].upper()"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" style="width: 60%; border: hidden; text-align:center;">
+                <div t-esc="page['description_check']"/>
+            </td>
+            <td style="width: 40%; border: hidden; "/>
+        </tr>
+    </table>
+
+    <table  style="width: 100%; border: hidden;">
+        <tr>
+            <br/>
+            <br/>
+            <br/>
+            <td style="width: 40%; border: hidden; "/>
+            <td style="width: 20%; border: hidden; ">
+                <div t-esc="page['date_month']"/>
+            </td>
+            <td style="width: 40%; border: hidden; "/>
+        </tr>
+        <tr>
+            <td>
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="width: 60%; border: hidden; text-align: left;">
+                &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<t t-esc="page['partner_name']"/>
+            </td>
+            <td style="width: 40%; border:hidden; text-align:center;">
+                 <t t-esc="page['amount'].replace(o.currency_id.symbol, '')"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td  colspan="3" style="width: 100%; border: hidden; text-align: left;">
+                 &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<t t-esc="page['amount_in_word'].upper()"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" style="width: 60%; border: hidden; text-align:center;">
+                <div t-esc="page['description_check']"/>
+            </td>
+            <td style="width: 40%; border: hidden; "/>
+        </tr>
+        <tr>
+            <td style="width: 40%; border: hidden;" />
+            <td style="width: 20%; border: hidden; text-align:center;">
+                Cheque número
+            </td>
+            <td style="width: 40%; border: hidden; text-align:right;">
+                <span t-if="page['sequence_number']" t-esc="page['sequence_number']"/>
+            </td>
+        </tr>
+    </table>
+
 </template>
 
-<template id="ckus_stub">
+<template id="ckus_stub_mx">
+    <table  style="width: 100%; border: hidden;">
+        <tr>
+            <br/>
+            <br/>
+            <td style="width: 100%; border: hidden; ">
+                &#160;&#160;&#160;&#160;<span t-esc="page['partner_name']"/>&#160;&#160;<span t-esc="page['date']"/>&#160;&#160;<span t-if="page['date']" t-esc="page['sequence_number']"/>
+            </td>
+        </tr>
+    </table>
     <div t-attf-class="ckus_stub ckus_stub_{{ stub_num }}">
-        <div class="row summary_line">
-            <div class="col-xs-4 text-left">
-                <span t-esc="page['partner_name']"/>
-            </div>
-            <div class="col-xs-4 text-middle">
-                <span t-esc="page['date']"/>
-            </div>
-            <div class="col-xs-4 text-right sequence_number">
-                <span t-if="page['sequence_number']" t-esc="page['sequence_number']"/>
-            </div>
-        </div>
 
         <table class="table table-bordered table-sm stub_lines" t-if="page['stub_lines']">
             <thead><tr>
-                <th class="text-left">Due Date</th>
-                <th class="text-left">Description</th>
-                <th class="text-right">Invoice Amount</th>
-                <th class="text-right">Balance Due</th>
-                <th class="text-right">Payment</th>
+                <th class="text-left">Fecha vencimiento</th>
+                <th class="text-left">Descripción</th>
+                <th class="text-right">Importe factura</th>
+                <th class="text-right">Saldo adeudado</th>
+                <th class="text-right">Pago</th>
             </tr></thead>
             <tbody>
                 <t t-foreach="page['stub_lines']" t-as="stub_line">
@@ -59,48 +145,13 @@
                 <tr t-if="page['stub_cropped']"><td colspan="6" class="text-right">...</td></tr>
             </tbody>
         </table>
-        <div class="stub_total_amount">Check Amount:
-            <span class="text-nowrap"><t t-esc="page['amount']"/></span>
+        <div class="text-right">Checar Monto:
+            <span class="text-right"><t t-esc="page['amount']"/></span>
         </div>
     </div>
 </template>
 <template id="ckus_check_footer">
     <div>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
         <br/>
         <br/>
         <br/>

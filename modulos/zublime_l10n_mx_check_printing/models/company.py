@@ -32,7 +32,7 @@ class AccountPayment(models.Model):
         "Diciembre")
         month = months[self.date.month - 1]
         date = str(self.date.day) + ' de ' + month + ' del ' + str(self.date.year)
-        result = '%(words)s 55/100 M.N' % {
+        result = '%(words)s 55/100 M.N ***********' % {
             'words': self.check_amount_in_words,
         }
         return {
@@ -46,7 +46,7 @@ class AccountPayment(models.Model):
             'currency': self.currency_id,
             'state': self.state,
             'amount': formatLang(self.env, self.amount, currency_obj=self.currency_id) if i == 0 else 'VOID',
-            'amount_in_word': self._check_fill_line(result) if i == 0 else 'VOID',
+            'amount_in_word': result if i == 0 else 'VOID',
             'memo': self.ref,
             'stub_cropped': not multi_stub and len(self.move_id._get_reconciled_invoices()) > INV_LINES_PER_STUB,
             # If the payment does not reference an invoice, there is no stub line to display

@@ -37,8 +37,8 @@ You can choose between:
     'license': 'OEEL-1',
     'assets': {
         'web.report_assets_common': [
-            'zublime_l10n_mx_check_printing/static/src/scss/report_check_commons.scss',
-            'zublime_l10n_mx_check_printing/static/**/*',
+            #'zublime_l10n_mx_check_printing/static/src/scss/report_check_commons.scss',
+            #'zublime_l10n_mx_check_printing/static/**/*',
         ],
     }
 }

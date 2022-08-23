@@ -8,7 +8,6 @@
     .ckus_stub_2 {
         top: 7in;
     }
-
     .ckus_check .sequence_number {
         top: 0.1in;
         left: 7.1in;
@@ -20,6 +19,14 @@
         width: 1.47in;
         text-align: center;
     }
+
+    .ckus_date_date {
+        top: 3.55in;
+        left: 2in;
+        width: 1.47in;
+        text-align: center;
+    }
+
     .ckus_payee_name {
         top: 1.09in;
         left: 0.85in;
@@ -41,7 +48,7 @@
         overflow: hidden;
     }
     .ckus_payee_addr {
-        top: 1.65in;
+        top: 1.80in;
         left: 2in;
         line-height: 1.1em;
     }
@@ -53,4 +60,15 @@
         font-size: 0.9em;
         overflow: hidden;
     }
+
+}
+
+.ckus_top_page_ckus {
+   .ckus_date_date {
+        top: 3.55in;
+        left: 2in;
+        width: 1.47in;
+        text-align: center;
+    }
+
 }

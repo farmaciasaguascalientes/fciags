@@ -19,17 +19,31 @@
         visibility: hidden;
     }
 
-    .ckus_check, .ckus_stub_1, .ckus_stub_2 {
+    .ckus_check, .ckus_stub_1, .ckus_stub_2,{
         position: absolute;
         height: 3.25in;
     }
+    .check{
+        position: absolute;
+        height: 6.25in;
+    }
 
     .ckus_check > * {
-        position: absolute;
+        position: absolute;0.55
         white-space: nowrap;
     }
 
+    /*.check > * {
+        position: absolute;0.55
+        white-space: nowrap;
+    }*/
+
     .sequence_number {
+        text-align: right;
+        font-size: 1.3em;
+    }
+
+    .sequence_number_check {
         text-align: right;
         font-size: 1.3em;
     }

@@ -9,8 +9,8 @@ from odoo.exceptions import ValidationError
 class PrintPreNumberedChecks(models.TransientModel):
     _inherit = 'print.prenumbered.checks'
 
-    nota = fields.Boolean('Nota')
-    description_check = fields.Char('Descripción')
+    nota = fields.Boolean('Nota', default=True)
+    description_check = fields.Char('Descripción', default='PARA ABONO DEL BENEFICIARIO')
 
 
     def print_checks(self):
