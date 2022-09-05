@@ -11,8 +11,13 @@ class ProductProduct(models.Model):
 
     @api.model
     def get_details(self, barcode):
+        multi_barcode_ids = False
         check_barcode = barcode
         product_details = self.search([('barcode', '=', check_barcode)])
+        if not product_details and self.env['ir.module.module'].search([('name', '=', 'sale_pos_multi_barcodes_app'),
+                                                                        ('state', '=', 'installed')]):
+            multi_barcode_ids = self.multi_barcode_ids.search([('multi_barcode', '=', check_barcode)])
+            product_details = multi_barcode_ids.product_tmpl_id
         IrDefault = self.env['ir.default'].sudo()
         price_list = IrDefault.get(
             'res.config.settings', "kiosk_pricelist_id")
@@ -69,10 +74,12 @@ class ProductProduct(models.Model):
                 get_price_off = round(get_price_off + tax_off, 2)
             elif price_off_compute_price == 'fixed':
                 pass
-
-
-
         else:
             get_price_regular = product_details.standard_price
-        return product_details.id, product_details.name, get_price_regular, product_details.barcode, \
-               product_details.default_code, get_price_off, product_details.currency_id.symbol, min_quantity
+        barcode = product_details.barcode
+        default_code = product_details.default_code
+        if multi_barcode_ids:
+            barcode = str(check_barcode)
+            default_code = str(check_barcode)
+        return product_details.id, product_details.name, get_price_regular, barcode, \
+               default_code, get_price_off, product_details.currency_id.symbol, min_quantity
