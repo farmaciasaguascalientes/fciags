@@ -16,6 +16,7 @@ class ResUsers(models.Model):
     is_allow_customer_selection=fields.Boolean("Allow Customer Selection")
     is_allow_plus_minus_button=fields.Boolean("Allow +/- Button")
 
+
 class HrEmployeeBase(models.AbstractModel):
     _inherit = "hr.employee.base"
 
