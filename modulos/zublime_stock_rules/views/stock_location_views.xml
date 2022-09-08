@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_create_rules_config" action="zublime_stock_rules.action_message_stock_rules" name="Prepare Resupply" parent="stock.menu_warehouse_config"/>
+</odoo>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <t t-extend="StockInventoryReport.Buttons" t-name="StockInventoryReport.Buttons">
+        <t t-jquery="button.o_button_at_date" t-operation="after">
+            <button class="btn btn-secondary o_button_stock_barcode mr-2" type="button"> Cantidades contadas </button>
+        </t>
+    </t>
+</templates>
