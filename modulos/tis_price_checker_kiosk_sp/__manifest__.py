@@ -4,7 +4,7 @@
 
 {
     'name': 'Price Checker with Special Price',
-    'version': '15.0.0.4',
+    'version': '15.0.0.5',
     'sequence': 1,
     'category': 'product',
     'summary': 'Price Checker Kiosk Mode',
