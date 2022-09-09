@@ -19,8 +19,12 @@ class ProductProduct(models.Model):
             multi_barcode_ids = self.multi_barcode_ids.search([('multi_barcode', '=', check_barcode)])
             product_details = multi_barcode_ids.product_tmpl_id
         IrDefault = self.env['ir.default'].sudo()
-        price_list = IrDefault.get(
-            'res.config.settings', "kiosk_pricelist_id")
+        if self.user_has_groups('tis_price_checker_kiosk_sp.group_price_checker_sp'):
+            if self.env.user.kiosk_pricelist_id:
+                price_list = self.env.user.kiosk_pricelist_id.id
+        else:
+            price_list = IrDefault.get(
+                'res.config.settings', "kiosk_pricelist_id")
         uom_id_show = IrDefault.get(
             'res.config.settings', "show_uom")
         if uom_id_show:

@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <template xml:space="preserve">
    <t t-name="PriceCheckerKioskModesp">
+       <div class="modal" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Artículo no encontrado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>El producto <t t-esc="widget.text_field"/> no se encuentra registrado.</p>
+              </div>
+            </div>
+          </div>
+       </div>
       <div class="o_hr_attendance_kiosk_mode_container o_home_menu_background">
       <span class="o_hr_attendance_kiosk_backdrop"/>
           <div class="o_hr_attendance_clock text-center"/>
