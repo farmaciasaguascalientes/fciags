@@ -1,0 +1,122 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* zublime_stock_rules
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-09-08 16:07+0000\n"
+"PO-Revision-Date: 2022-09-08 12:10-0400\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es_MX\n"
+"X-Generator: Poedit 2.3\n"
+
+#. module: zublime_stock_rules
+#: model_terms:ir.ui.view,arch_db:zublime_stock_rules.wizard_message_stock_rules_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: zublime_stock_rules
+#. openerp-web
+#: code:addons/zublime_stock_rules/static/src/xml/stock_barcode_template.xml:0
+#, python-format
+msgid "Cantidades contadas"
+msgstr ""
+
+#. module: zublime_stock_rules
+#: model:ir.model.fields,field_description:zublime_stock_rules.field_message_stock_rules__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: zublime_stock_rules
+#: model:ir.model.fields,field_description:zublime_stock_rules.field_message_stock_rules__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: zublime_stock_rules
+#: model:ir.model.fields,field_description:zublime_stock_rules.field_message_stock_rules__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: zublime_stock_rules
+#: code:addons/zublime_stock_rules/wizards/message_stock_rules.py:0
+#, python-format
+msgid "Does not have configured warehouses"
+msgstr "No tiene almacenes configurados"
+
+#. module: zublime_stock_rules
+#: model:ir.model.fields,field_description:zublime_stock_rules.field_message_stock_rules__id
+msgid "ID"
+msgstr ""
+
+#. module: zublime_stock_rules
+#: code:addons/zublime_stock_rules/wizards/message_stock_rules.py:0
+#, python-format
+msgid "It does not have routes with the name buy configured"
+msgstr "No tiene rutas con el nombre comprar configuradas"
+
+#. module: zublime_stock_rules
+#: code:addons/zublime_stock_rules/wizards/message_stock_rules.py:0
+#, python-format
+msgid ""
+"It does not have types of incoming operations registered for the warehouse "
+"%s "
+msgstr ""
+"No tiene registrados tipos de operaciones entrantes para el almacén %s "
+
+#. module: zublime_stock_rules
+#: model:ir.model.fields,field_description:zublime_stock_rules.field_message_stock_rules____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: zublime_stock_rules
+#: model:ir.model.fields,field_description:zublime_stock_rules.field_message_stock_rules__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: zublime_stock_rules
+#: model:ir.model.fields,field_description:zublime_stock_rules.field_message_stock_rules__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: zublime_stock_rules
+#: model:ir.model,name:zublime_stock_rules.model_message_stock_rules
+msgid "Message Stock Rules"
+msgstr ""
+
+#. module: zublime_stock_rules
+#: model:ir.model.fields,field_description:zublime_stock_rules.field_message_stock_rules__name
+msgid "Name"
+msgstr ""
+
+#. module: zublime_stock_rules
+#: model:ir.ui.menu,name:zublime_stock_rules.menu_create_rules_config
+msgid "Prepare Resupply"
+msgstr "Preparar reabastecimiento"
+
+#. module: zublime_stock_rules
+#: model:ir.actions.act_window,name:zublime_stock_rules.action_message_stock_rules
+msgid "Replenishment rules"
+msgstr "Reglas de reposición"
+
+#. module: zublime_stock_rules
+#: code:addons/zublime_stock_rules/wizards/message_stock_rules.py:0
+#, python-format
+msgid "Rules"
+msgstr "Reglas"
+
+#. module: zublime_stock_rules
+#: model_terms:ir.ui.view,arch_db:zublime_stock_rules.wizard_message_stock_rules_form
+msgid "confirm"
+msgstr "Confirmar"
+
+#. module: zublime_stock_rules
+#: model_terms:ir.ui.view,arch_db:zublime_stock_rules.wizard_message_stock_rules_form
+msgid "¿Do you want to consolidate replenishment rules?"
+msgstr "¿Desea consolidar las reglas de reabastecimiento?"

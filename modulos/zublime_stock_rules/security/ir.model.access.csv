@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_message_stock_rules,message_message_stock_rules,model_message_stock_rules,base.group_user,1,1,1,1

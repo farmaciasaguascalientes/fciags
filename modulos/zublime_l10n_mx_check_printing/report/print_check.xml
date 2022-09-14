@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+<template id="ckus_check_mx">
+    <table  style="width: 100%; border: hidden;">
+        <tr>
+            <br/>
+            <br/>
+            <td style="width: 40%; border: hidden; "/>
+            <td style="width: 20%; border: hidden; ">
+                <div t-esc="page['date_month']"/><br/>
+            </td>
+            <td style="width: 40%; border: hidden; "/>
+        </tr>
+        <tr>
+            <td>
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="width: 60%; border: hidden; text-align: left;">
+                &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<t t-esc="page['partner_name']"/>
+            </td>
+            <td style="width: 40%; border:hidden; text-align:center;">
+                 <t t-esc="page['amount'].replace(o.currency_id.symbol, '')"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td  colspan="3" style="width: 100%; border: hidden; text-align: left;">
+                 &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<t t-esc="page['amount_in_word'].upper()"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" style="width: 60%; border: hidden; text-align:center;">
+                <div t-esc="page['description_check']"/>
+            </td>
+            <td style="width: 40%; border: hidden; "/>
+        </tr>
+    </table>
+
+    <table  style="width: 100%; border: hidden;">
+        <tr>
+            <br/>
+            <br/>
+            <br/>
+            <td style="width: 40%; border: hidden; "/>
+            <td style="width: 20%; border: hidden; ">
+                <div t-esc="page['date_month']"/>
+            </td>
+            <td style="width: 40%; border: hidden; "/>
+        </tr>
+        <tr>
+            <td>
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="width: 60%; border: hidden; text-align: left;">
+                &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<t t-esc="page['partner_name']"/>
+            </td>
+            <td style="width: 40%; border:hidden; text-align:center;">
+                 <t t-esc="page['amount'].replace(o.currency_id.symbol, '')"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td  colspan="3" style="width: 100%; border: hidden; text-align: left;">
+                 &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<t t-esc="page['amount_in_word'].upper()"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" style="width: 60%; border: hidden; text-align:center;">
+                <div t-esc="page['description_check']"/>
+            </td>
+            <td style="width: 40%; border: hidden; "/>
+        </tr>
+        <tr>
+            <td style="width: 40%; border: hidden;" />
+            <td style="width: 20%; border: hidden; text-align:center;">
+                Cheque número
+            </td>
+            <td style="width: 40%; border: hidden; text-align:right;">
+                <span t-if="page['sequence_number']" t-esc="page['sequence_number']"/>
+            </td>
+        </tr>
+    </table>
+
+</template>
+
+<template id="ckus_stub_mx">
+    <table  style="width: 100%; border: hidden;">
+        <tr>
+            <br/>
+            <br/>
+            <td style="width: 100%; border: hidden; ">
+                &#160;&#160;&#160;&#160;<span t-esc="page['partner_name']"/>&#160;&#160;<span t-esc="page['date']"/>&#160;&#160;<span t-if="page['date']" t-esc="page['sequence_number']"/>
+            </td>
+        </tr>
+    </table>
+    <div t-attf-class="ckus_stub ckus_stub_{{ stub_num }}">
+
+        <table class="table table-bordered table-sm stub_lines" t-if="page['stub_lines']">
+            <thead><tr>
+                <th class="text-left">Fecha vencimiento</th>
+                <th class="text-left">Descripción</th>
+                <th class="text-right">Importe factura</th>
+                <th class="text-right">Saldo adeudado</th>
+                <th class="text-right">Pago</th>
+            </tr></thead>
+            <tbody>
+                <t t-foreach="page['stub_lines']" t-as="stub_line">
+                    <t t-if="stub_line.get('header')">
+                        <tr><th colspan="6"><t t-esc="stub_line['name']"/></th></tr>
+                    </t>
+                    <t t-if="not stub_line.get('header')"><tr>
+                        <td class="text-left"><t t-if="stub_line['due_date']" t-esc="stub_line['due_date']"/></td>
+                        <td class="text-left text-truncate" style="max-width: 500px;"><t t-esc="stub_line['number']"/></td>
+                        <td class="text-right"><t t-esc="stub_line['amount_total']"/></td>
+                        <td class="text-right">
+                            <t t-esc="stub_line['amount_residual']"/>
+                        </td>
+                        <td class="text-right"><t t-esc="stub_line['amount_paid']"/></td>
+                    </tr></t>
+                </t>
+                <tr t-if="page['stub_cropped']"><td colspan="6" class="text-right">...</td></tr>
+            </tbody>
+        </table>
+        <div class="text-right">Checar Monto:
+            <span class="text-right"><t t-esc="page['amount']"/></span>
+        </div>
+    </div>
+</template>
+<template id="ckus_check_footer">
+    <div>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <strong>Recibi</strong><br/>
+        <br/>
+        <span>Cheque:_____________________</span><br/>
+        <br/>
+        <span>Firma:_______________________</span><br/>
+        <br/>
+        <span>Fecha:_______________________</span>
+    </div>
+</template>
+
+</data>
+</odoo>

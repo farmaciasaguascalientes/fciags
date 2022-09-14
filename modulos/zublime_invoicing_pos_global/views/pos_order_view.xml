@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="view_pos_order_global_invoice_pos_tree" model="ir.ui.view">
+        <field name="name">view.pos.order.global.invoice.pos.tree</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_order_tree"/>
+        <field name="arch" type="xml">
+            <field name="state" position="after">
+                <field name="firmado" optional="show" groups="zublime_edi.group_display_edi_info"/>
+            </field>
+        </field>
+    </record>
+    <record id="pos_order_form" model="ir.ui.view">
+        <field name="name">pos.order.form</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_pos_order_invoice']" position="attributes">
+                <attribute name="attrs">{'invisible': ['|', ('invoice_group', '=', False), ('account_move','!=',False)]}</attribute>
+                <attribute name="class">oe_highlight</attribute>
+            </xpath>
+            <xpath expr="//form/*" position="before">
+                <field name="account_move" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

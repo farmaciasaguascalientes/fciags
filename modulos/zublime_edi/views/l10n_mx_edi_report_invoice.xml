@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- Remueve advertencia sobre el timbrado en factura impresa (html/pdf)-->
+    <template id="report_invoice_document_mx_zublime" inherit_id="l10n_mx_edi.report_invoice_document_mx">
+        <xpath expr="//button" position="replace">   
+
+        </xpath>
+    </template>
+</odoo>

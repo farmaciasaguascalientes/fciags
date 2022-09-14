@@ -4,7 +4,7 @@
 
 {
     'name': 'Price Checker with Special Price',
-    'version': '15.0.0.2',
+    'version': '15.0.0.5',
     'sequence': 1,
     'category': 'product',
     'summary': 'Price Checker Kiosk Mode',
@@ -20,7 +20,8 @@
     'data': [
         'security/security.xml',
         'views/price_checker_kiosk_view.xml',
-        'views/res_config_settings_views.xml'
+        'views/res_config_settings_views.xml',
+        'views/res_users_views.xml',
     ],
     'assets': {
         'web.assets_backend': [

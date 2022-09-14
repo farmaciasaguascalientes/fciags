@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="pos_advance_payment_inv_view_form" model="ir.ui.view">
+        <field name="name">pos.advance.payment.inv.view.form</field>
+        <field name="model">pos.advance.payment.inv</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <p class="oe_grey">
+                        Las facturas se crearán como borrador para que pueda revisarlas antes de validarlas.
+                    </p>
+                    <group>
+                        <group>
+                            <field name="count_pos_order" readonly="1"/>
+                            <field name="company_id" invisible="1"/>
+                            <field name="create_invoice_method" widget="radio"/>
+                            <field
+                                name="partner_id"
+                                domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]"
+                                options="{'no_create': True}"
+                                attrs="{'invisible': [('create_invoice_method', '!=', 'facturacion_cliente_especifico')], 'required': [('create_invoice_method', '=', 'facturacion_cliente_especifico')]}"/>
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="create_invoices" class="oe_highlight" context="{'open_invoices': True}" string="Crear y ver factura" type="object"/>
+                    <button name="create_invoices" string="Crear factura" type="object"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pos_advance_payment_inv" model="ir.actions.act_window">
+        <field name="name">Crear facturas</field>
+        <field name="res_model">pos.advance.payment.inv</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="point_of_sale.model_pos_order" />
+        <field name="binding_view_types">list</field>
+    </record>
+</odoo>

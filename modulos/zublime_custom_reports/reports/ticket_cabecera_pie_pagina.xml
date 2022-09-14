@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <template id="report_cabecera_ticket_custom">
+        <div class="page" style="font-size: 60%">
+            <div class="row">
+                <div class="col-4"/>
+                <div class="col-4">
+                    <span t-field="o.company_id.logo"  t-options="{'widget': 'image'}" rol="img"/>
+                </div>
+                <div class="col-4"/>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <strong t-field="o.company_id.display_name"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <span t-field="o.company_id.company_registry"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <strong>RFC: </strong><span t-field="o.company_id.vat"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <span t-esc="o.get_street_company()"/>
+                </div>
+            </div>
+            <div t-if="o.company_id.phone or o.company_id.mobile" class="row">
+                <div class="col-12 text-center">
+                    <strong>Tel. </strong><span t-esc="o.company_id.phone or o.company_id.mobile"/>
+                </div>
+            </div>
+            <div t-if="o.company_id.email" class="row">
+                <div class="col-12 text-center">
+                    <strong>Email. </strong><span t-esc="o.company_id.email"/>
+                </div>
+            </div>
+            <div t-if="o.company_id.website" class="row">
+                <div class="col-12 text-center">
+                    <strong>Sitio web. </strong><span t-esc="o.company_id.website"/>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="report_pie_pagina_ticket_custom">
+        <div class="page" style="font-size: 60%">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <strong>¡Gracias por su preferencia!</strong>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <span t-esc="o.get_datime()"/> hrs
+                </div>
+            </div>
+        </div>
+    </template>
+</odoo>

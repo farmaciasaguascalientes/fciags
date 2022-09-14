@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <template id="report_body_purchase_solicitud_cotizacion_ticket">
+        <div class="page" style="font-size: 60%">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <strong>Solicitud de Cotización <span t-field="o.display_name"/></strong>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <img alt="Barcode" t-if="len(o.display_name) == 13" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN13', quote_plus(o.display_name), 600, 150)" style="width:50%;height::4rem;"/>
+                    <img alt="Barcode" t-elif="len(o.display_name) == 8" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN8', quote_plus(o.display_name), 600, 150)" style="width:50%;height::4rem;"/>
+                    <img alt="Barcode" t-else="" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', quote_plus(o.display_name), 600, 150)" style="width:50%;height::4rem;"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <span t-field="o.display_name"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-left">
+                    <strong>Almacén que recibe:</strong>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-left">
+                    <span t-field="o.picking_type_id.display_name"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-left">
+                    <strong>Proveedor:</strong>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-left">
+                    <span t-field="o.partner_id.display_name"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-left">
+                    <strong>Elaboró:</strong>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-left">
+                    <span t-field="o.user_id.display_name"/>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-12">
+                    <table style="width: 100%;">
+                        <tbody>
+                            <tr>
+                                <th style="padding-right: 10px">Qty</th>
+                                <th style="width: 100%;">Descripción</th>
+                                <th>Fecha Prevista</th>
+                            </tr>
+                            <tr t-foreach="o.order_line" t-as="line">
+                                <td><span t-field="line.product_qty"/></td>
+                                <td>
+                                    <span t-field="line.product_id.name"/>
+                                    <span style="display: block;" t-if="line.product_id.barcode" t-field="line.product_id.barcode"/>
+                                </td>
+                                <td><span t-field="line.date_planned"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="ticket_purchase_solicitud_cotizacion">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <t t-call="zublime_custom_reports.report_cabecera_ticket_custom"/>
+                    <br/>
+                    <t t-call="zublime_custom_reports.report_body_purchase_solicitud_cotizacion_ticket"/>
+                    <br/>
+                    <t t-call="zublime_custom_reports.report_pie_pagina_ticket_custom"/>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

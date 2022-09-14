@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="sale_advance_payment_inv_invoicing_sales_global" model="ir.ui.view">
+        <field name="name">sale_advance_payment_inv_invoicing_sales_global</field>
+        <field name="model">sale.advance.payment.inv</field>
+        <field name="inherit_id" ref="sale.view_sale_advance_payment_inv"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group" position="after">
+                <group>
+                    <group>
+                        <field name="company_id" invisible="1"/>
+                        <field name="create_invoice_method"/>
+                        <field
+                            name="partner_id"
+                            domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]"
+                            options="{'no_create': True}"
+                            attrs="{'invisible': [('create_invoice_method', '!=', 'facturacion_cliente_especifico')], 'required': [('create_invoice_method', '=', 'facturacion_cliente_especifico')]}"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
