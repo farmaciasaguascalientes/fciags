@@ -3,6 +3,11 @@
 
 from odoo import models, fields
 from odoo.tools.misc import formatLang, format_date
+try:
+    from num2words import num2words
+except ImportError:
+    _logger.warning("The num2words python library is not installed, amount-to-text features won't be fully available.")
+    num2words = None
 
 
 class Company(models.Model):
@@ -27,14 +32,19 @@ class AccountPayment(models.Model):
     description_check = fields.Char('Descripción')
 
     def _check_build_page_info(self, i, p):
+        amount_i, amount_d = divmod(self.amount, 1)
+        amount_d = int(round(amount_d * 100, 2))
+        words = num2words(amount_i, lang='es')
+        result = '%(words)s %(currency_name)s %(amount_d)02d/100 M.N' % {
+            'words': words,
+            'currency_name': self.currency_id.currency_unit_label,
+            'amount_d': amount_d,
+        }
         multi_stub = self.company_id.account_check_printing_multi_stub
         months = ("Enero", "Febrero", "Marzo", "Abri", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre",
         "Diciembre")
         month = months[self.date.month - 1]
         date = str(self.date.day) + ' de ' + month + ' del ' + str(self.date.year)
-        result = '%(words)s 55/100 M.N ***********' % {
-            'words': self.check_amount_in_words,
-        }
         return {
             'sequence_number': self.check_number,
             'manual_sequencing': self.journal_id.check_manual_sequencing,
