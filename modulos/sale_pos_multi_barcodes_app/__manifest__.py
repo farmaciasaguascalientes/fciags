@@ -17,6 +17,9 @@
     ],
 
     'assets': {
+        'web.assets_backend': [
+            'sale_pos_multi_barcodes_app/static/src/js/main.js',
+        ],
         'point_of_sale.assets': [
             'sale_pos_multi_barcodes_app/static/src/js/pos_barcode_search.js',
             ],    
