@@ -3,6 +3,7 @@ from odoo import api, models
 
 class ReportPOSSession(models.AbstractModel):
     _name = 'report.pos_session_z_report_omax.report_pos_session_z'
+    _description = 'report pos_session_z_report_omax report_pos_session_z'
 
     @api.model
     def _get_report_values(self, ids, data=None):

@@ -5,6 +5,7 @@
     'category': 'Electronic Invoice Online',
     'author': 'Zublime',
     "website": "https://zublime.mx",
+    'license': 'LGPL-3',
     'depends': [
         'base',
         'account',
