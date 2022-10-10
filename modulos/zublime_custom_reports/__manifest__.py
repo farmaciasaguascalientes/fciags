@@ -4,7 +4,7 @@
     'summary': 'Zublime Custom Reports',
     'category': 'Reports',
     'author': 'Zublime',
-    'license': 'Other proprietary',
+    'license': 'LGPL-3',
     'contributors': [
         'rrojas',
     ],
