@@ -3,59 +3,80 @@
 <data>
 
 <template id="ckus_check_mx">
-    <table  style="width: 100%; border: hidden;">
-        <tr>
-            <br/>
-            <br/>
-            <td style="width: 40%; border: hidden; "/>
-            <td style="width: 20%; border: hidden; ">
-                <div t-esc="page['date_month']"/><br/>
+    <div style="position: absolute; top: 80px; left: 390px;" t-esc="page['date_month']"/>
+    <div style="width: 100%; position: absolute; top: 120px; left: 20px;" t-esc="page['partner_name']"/>
+    <div style="position: absolute; top: 150px; left: 35px;" t-esc="page['amount_in_word'].upper()"/>
+    <table style="width: 100%;  border: hidden; ">
+        <tr style="width: 100%;  border: hidden;">
+            <td colspan="3" style="width: 100%;  border: hidden;">
+                <br/>
             </td>
-            <td style="width: 40%; border: hidden; "/>
         </tr>
-        <tr>
-            <td>
+        <tr style="width: 100%;  border: hidden;">
+            <td colspan="3" style="width: 100%;  border: hidden;">
+                <br/>
+            </td>
+        </tr>
+        <tr style="width: 100%;  border: hidden;">
+            <td colspan="3" style="width: 70%; border: hidden; text-align: center;">
+                <p><br/></p>
+                  <div/>
+            </td>
+        </tr>
+        <tr style="width: 100%;  border: hidden;">
+            <td colspan="3" style="width: 100%;  border: hidden;">
                 <br/>
             </td>
         </tr>
         <tr>
-            <td colspan="2" style="width: 60%; border: hidden; text-align: left;">
-                &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<t t-esc="page['partner_name']"/>
+            <td style="width: 60%;   border: hidden; text-align: left;">
+                   <t/>
             </td>
-            <td style="width: 40%; border:hidden; text-align:center;">
-                 <t t-esc="page['amount'].replace(o.currency_id.symbol, '')"/>
+            <td colspan="2" style="border: hidden;">
+                <t t-esc="page['amount'].replace(o.currency_id.symbol, '')"/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" style="width: 100%; height: 10%: border: hidden; text-align: left;">
+                        <p/>
+                      <t/>
             </td>
         </tr>
         <tr>
             <td>
                 <br/>
-            </td>
-        </tr>
-        <tr>
-            <td  colspan="3" style="width: 100%; border: hidden; text-align: left;">
-                 &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<t t-esc="page['amount_in_word'].upper()"/>
-            </td>
-        </tr>
-        <tr>
-            <td>
                 <br/>
             </td>
         </tr>
         <tr>
-            <td colspan="3" style="width: 60%; border: hidden; text-align:center;">
+            <td colspan="1" style="border: hidden; text-align:center;">
                 <div t-esc="page['description_check']"/>
             </td>
-            <td style="width: 40%; border: hidden; "/>
         </tr>
     </table>
 
-    <table  style="width: 100%; border: hidden;">
+    <table style="width: 100%; border: hidden;">
+      <tr>
+            <td>
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br/>
+            </td>
+        </tr>
         <tr>
             <br/>
             <br/>
             <br/>
             <td style="width: 40%; border: hidden; "/>
-            <td style="width: 20%; border: hidden; ">
+            <td style="width: 40%; border: hidden; ">
                 <div t-esc="page['date_month']"/>
             </td>
             <td style="width: 40%; border: hidden; "/>
@@ -67,7 +88,7 @@
         </tr>
         <tr>
             <td colspan="2" style="width: 60%; border: hidden; text-align: left;">
-                &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<t t-esc="page['partner_name']"/>
+                            <t t-esc="page['partner_name']"/>
             </td>
             <td style="width: 40%; border:hidden; text-align:center;">
                  <t t-esc="page['amount'].replace(o.currency_id.symbol, '')"/>
@@ -79,8 +100,8 @@
             </td>
         </tr>
         <tr>
-            <td  colspan="3" style="width: 100%; border: hidden; text-align: left;">
-                 &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<t t-esc="page['amount_in_word'].upper()"/>
+            <td colspan="3" style="width: 100%; border: hidden; text-align: left;">
+                             <t t-esc="page['amount_in_word'].upper()"/>
             </td>
         </tr>
         <tr>
@@ -95,7 +116,7 @@
             <td style="width: 40%; border: hidden; "/>
         </tr>
         <tr>
-            <td style="width: 40%; border: hidden;" />
+            <td style="width: 40%; border: hidden;"/>
             <td style="width: 20%; border: hidden; text-align:center;">
                 Cheque número
             </td>

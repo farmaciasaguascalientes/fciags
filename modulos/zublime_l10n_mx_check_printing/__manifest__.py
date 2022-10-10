@@ -2,7 +2,7 @@
 {
     'name': 'MX Checks Layout',
     'icon': '/l10n_us/static/description/icon.png',
-    'version': '1.0',
+    'version': '2.0',
     'category': 'Accounting/Localizations/Check',
     'summary': 'Print US Checks',
     'description': """

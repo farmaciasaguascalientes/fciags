@@ -14,6 +14,7 @@ class ProductTemplate(models.Model):
 
 class ProductMultiBarcode(models.Model):
 	_name = 'product.multi.barcode'
+	_description = 'product.multi.barcode'
 	
 	multi_barcode = fields.Char('Barcode', required=True)
 	product_tmpl_id = fields.Many2one('product.template','Product')
