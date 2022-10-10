@@ -4,6 +4,7 @@
     'summary': 'Zublime Custom Reports',
     'category': 'Reports',
     'author': 'Zublime',
+    'license': 'Other proprietary',
     'contributors': [
         'rrojas',
     ],
