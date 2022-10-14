@@ -2,7 +2,7 @@
 {
     'name': 'Access Restriction By MAC Address',
     'summary': """User Can Access His Account Only From Specified MAC Address""",
-    'version': '15.0.1.0.0',
+    'version': '15.0.1.0.1',
     'description': """User Can Access His Account Only From Specified MAC Address""",
     'author': 'Ahmad Inayat',
     'company': 'Ahmad Inayat',
