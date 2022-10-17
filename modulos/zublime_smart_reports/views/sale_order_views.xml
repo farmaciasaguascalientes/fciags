@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="zublime_sale_order_form_smart_reports" model="ir.ui.view">
+        <field name="name">sale_order_form_smart_reports</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='order_lines']/field/tree/field[@name='product_uom_qty']" position='before'>
+                <field name="product_available_quantity_snapshot" force_save="1" readonly="1" invisible="1"/>
+                <field name="product_qty_available_snapshot" force_save="1" readonly="1" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
