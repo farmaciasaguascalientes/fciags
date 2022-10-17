@@ -17,6 +17,17 @@ class SaleOrder(models.Model):
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
+    def _compute_available_quantity(self):
+        for line_order in self:
+            line_order.available_quantity = sum(self.env['stock.quant'].sudo().search([
+                ('product_id', '=', line_order.product_id.id), ('on_hand', '=', True)]).mapped(
+                'available_quantity'))
+
+    available_quantity = fields.Float(
+        'Disponible',
+        help="On hand quantity which hasn't been reserved on a transfer, in the default unit of measure of the product",
+        compute='_compute_available_quantity')
+
     product_available_quantity_snapshot = fields.Float(
         'Disponible snapshot')
 
